@@ -17,5 +17,10 @@ public class GamePanel extends JPanel
 		
 	}
 	
+	public String toString()
+	{
+		return "I am the GamePanel object. I exit!";
+	}
+	
 
 }

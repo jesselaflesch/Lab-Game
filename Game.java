@@ -61,5 +61,10 @@ public class Game
 	{
 		this.thirdScore = thirdScore;
 	}
+	
+	public String toString()
+	{
+		return "Hi, I am Game. I hold stuff and things.";
+	}
 
 }

@@ -15,4 +15,9 @@ public class LevelPanel extends JPanel
 	{
 		
 	}
+	
+	public String toString()
+	{
+		return "I am the LevelPanel object and I exist!";
+	}
 }

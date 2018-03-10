@@ -12,7 +12,7 @@ public class Enemy
 	private String imageName;
 	private Movement enemyMovement;
 	
-	public Enemy()
+	public Enemy(String imageName)
 	{
 		this.speed = speed; 
 		this.xLoc = xLoc; 
@@ -30,6 +30,13 @@ public class Enemy
 	public void appear()
 	{
 		
+	}
+	public String toString()
+	{
+		return "ImageName: \t" + imageName + "\n"
+				+ "xLoc: \t\t" + xLoc + "\n"
+				+ "yLoc: \t\t" + yLoc + "\n"
+				+ "Movement Object: " + enemyMovement.toString() + "\n";
 	}
 	
 }
