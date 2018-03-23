@@ -23,7 +23,7 @@ public class Driver {
 	// Making the frame
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-	// Making a panel using PoolPanel class that we made
+	// Making a panel using LevelPanel class that we made
 		LevelPanel levelPanel = new LevelPanel(); 
 		
 	// Putting that panel on the frame and making it visible

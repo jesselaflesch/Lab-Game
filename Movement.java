@@ -1,4 +1,3 @@
-
 //**********************************************************************
 /* Author = Ian Gonzales
  * Partner = Jesse LaFlesch
@@ -22,11 +21,11 @@ public class Movement implements KeyListener
 	private Player myPlayer;
 	private Enemy myEnemy;
 	private Item myItem;
-	private Timer myTimer = new Timer(500, new timerListener());
+	private Timer myTimer = new Timer(400, new timerListener());
 	private JPanel myPanel;
-	private ImageIcon myImage1 = new ImageIcon(myPlayer.getImageName());
+/*	private ImageIcon myImage1 = new ImageIcon(myPlayer.getImageName());
 	private ImageIcon myEnemyImage = new ImageIcon(myEnemy.getImageName());
-	private ImageIcon myItemImage = new ImageIcon(myItem.getImageName());
+	private ImageIcon myItemImage = new ImageIcon(myItem.getImageName());*/
 	
 	public Movement(Player myPlayer, Enemy myEnemy, JPanel myPanel) 
 	{
