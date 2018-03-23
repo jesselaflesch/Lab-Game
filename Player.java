@@ -1,3 +1,4 @@
+
 //**********************************************************************
 /* Author = Ian Gonzales
  * Partner = Jesse LaFlesch
@@ -11,9 +12,9 @@ import java.util.ArrayList;
 public class Player {
 
 	private String name, imageName;
-	private int xLoc, yLoc, itemsCollected, score;
+	private int xLoc, yLoc, itemsCollected, score, width, height;
 	private Movement playerMovement;
-	
+
 	public Player(String name, String imageName) {
 		this.name = name;
 		this.imageName = imageName;
@@ -21,7 +22,6 @@ public class Player {
 		this.yLoc = 0;
 		this.itemsCollected = 0;
 		this.score = 0;
-		this.playerMovement = new Movement();
 	}
 
 
@@ -54,6 +54,9 @@ public class Player {
 		return imageName;
 	}
 
+	public void setItemsCollected(int itemsCollected) {
+		this.itemsCollected = itemsCollected;
+	}
 
 	public int getItemsCollected() {
 		return itemsCollected;

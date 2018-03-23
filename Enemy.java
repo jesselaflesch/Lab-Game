@@ -1,3 +1,7 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+
 //*****************************************************************
 /* Author = Jesse LaFlesch
  * Partner = Ian Gonzales
@@ -8,29 +12,43 @@
 
 public class Enemy 
 {
-	private int speed, xLoc, yLoc;
+	private int speed, xLoc, yLoc, width, height;
 	private String imageName;
 	private Movement enemyMovement;
+	private Random generator = new Random();
+
 	
 	public Enemy(String imageName)
 	{
 		this.speed = speed; 
-		this.xLoc = xLoc; 
-		this.yLoc = yLoc;
+		this.xLoc = 600; 
+		this.yLoc = 600;
 		this.imageName = imageName; 
-		this.enemyMovement = new Movement();
 		
 	}
 	
-	public void approachPlayer()
-	{
-		
+	public int getxLoc() {
+		return xLoc;
 	}
 
-	public void appear()
-	{
-		
+	public void setxLoc(int xLoc) {
+		this.xLoc = xLoc;
 	}
+
+	public int getyLoc() {
+		return yLoc;
+	}
+
+	public void setyLoc(int yLoc) {
+		this.yLoc = yLoc;
+	}
+
+	public String getImageName()
+	{
+		return imageName;
+	}
+	
+	
 	public String toString()
 	{
 		return "ImageName: \t" + imageName + "\n"
