@@ -22,8 +22,7 @@ public class Player {
 		this.itemsCollected = 0;
 		this.score = 0;
 	}
-
-
+	
 	public int getxLoc() {
 		return xLoc;
 	}

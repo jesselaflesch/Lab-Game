@@ -23,22 +23,33 @@ public class Movement implements KeyListener
 	private Item myItem;
 	private Timer myTimer = new Timer(400, new timerListener());
 	private JPanel myPanel;
-/*	private ImageIcon myImage1 = new ImageIcon(myPlayer.getImageName());
-	private ImageIcon myEnemyImage = new ImageIcon(myEnemy.getImageName());
-	private ImageIcon myItemImage = new ImageIcon(myItem.getImageName());*/
+	private int enemyHeight, enemyWidth, playerHeight, playerWidth, itemHeight, itemWidth;
+	private ImageIcon myEnemyImage, myPlayerImage, myItemImage;
 	
-	public Movement(Player myPlayer, Enemy myEnemy, JPanel myPanel) 
+	public Movement(Player myPlayer, Enemy myEnemy, ImageIcon myPlayerImage, ImageIcon myEnemyImage,
+			ImageIcon myItemImage, JPanel myPanel) 
 	{
 		this.myPlayer = myPlayer;
 		this.myEnemy = myEnemy;
 		this.myPanel = myPanel;
-
+		this.myPlayerImage = myPlayerImage;
+		this.myEnemyImage = myEnemyImage;
+		this.myItemImage = myItemImage;
+		
+		this.playerHeight = myPlayerImage.getIconHeight();
+		this.playerWidth = myPlayerImage.getIconWidth();
+		this.enemyHeight = myEnemyImage.getIconHeight();
+		this.enemyWidth = myEnemyImage.getIconWidth();
+		this.itemHeight = myItemImage.getIconHeight();
+		this.itemWidth = myItemImage.getIconWidth();
 	}
+	
 
 	public void startTimer()
 	{
 		myTimer.start();
 	}
+	
 	private class timerListener implements ActionListener
 	{
 

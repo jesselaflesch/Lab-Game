@@ -6,6 +6,7 @@
  * Purpose = The place where magic happens. Uses Player, Item, and Enemy.
  ******************************************************************/
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -26,7 +27,7 @@ public class LevelPanel extends JPanel
 	private ImageIcon myImage1 = new ImageIcon(myPlayer.getImageName());
 	private ImageIcon myEnemyImage = new ImageIcon(myEnemy.getImageName());
 	private ImageIcon myItemImage = new ImageIcon(myItem.getImageName());
-	private Movement movement = new Movement(myPlayer, myEnemy, this);
+	private Movement movement = new Movement(myPlayer, myEnemy, myImage1, myEnemyImage, myItemImage, this);
 
 	private Random generator = new Random();
 	private int minNum = 50;
@@ -36,7 +37,8 @@ public class LevelPanel extends JPanel
 	
 	public LevelPanel()
 	{
-		setPreferredSize(new Dimension(800,800));
+		setPreferredSize(new Dimension(1000,800));
+		setLayout(new BorderLayout());
 		setFocusable(true);
 		movement.startTimer();
 		addKeyListener(movement);
@@ -63,6 +65,18 @@ public class LevelPanel extends JPanel
 		
 		
 	}
+	public ImageIcon getMyImage1() {
+		return myImage1;
+	}
+
+	public ImageIcon getMyEnemyImage() {
+		return myEnemyImage;
+	}
+
+	public ImageIcon getMyItemImage() {
+		return myItemImage;
+	}
+
 	public String toString()
 	{
 		return "I am the LevelPanel object and I exist!";
