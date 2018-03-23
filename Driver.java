@@ -1,3 +1,5 @@
+import javax.swing.JFrame;
+
 //**********************************************************************
 /* Authors = Jesse LaFlesch & Ian Gonzales
  * File = Driver.java
@@ -8,15 +10,29 @@ public class Driver {
 
 	public static void main(String[] args) {
 		
-		Player myPlayer = new Player("Ian", "./src/ian.jpg");
+/*		Player myPlayer = new Player("Ian", "./src/Images/MegaMan.jpg");
 		Movement myMovement = new Movement();
 		Item myItem = new Item("./src/jewel.jpg", 0, 0);
 		Game myGame = new Game();
 		GamePanel myGamePanel = new GamePanel();
 		LevelPanel myLevelPanel = new LevelPanel();
-		Enemy myEnemy = new Enemy("./src/badguy.jpg");
+		Enemy myEnemy = new Enemy("./src/Images/BadGuy.png");*/
 		
-		System.out.println("Instantiating a \"Player\":");
+		JFrame myFrame = new JFrame("Level Panel.");
+		
+	// Making the frame
+		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	// Making a panel using PoolPanel class that we made
+		LevelPanel levelPanel = new LevelPanel(); 
+		
+	// Putting that panel on the frame and making it visible
+		myFrame.getContentPane().add(levelPanel);
+		myFrame.add(levelPanel);
+		myFrame.pack();
+		myFrame.setVisible(true);
+		
+/*		System.out.println("Instantiating a \"Player\":");
 		System.out.println(myPlayer);
 		System.out.println("Instantiating a \"Movement\":");
 		System.out.println(myMovement);
@@ -32,7 +48,7 @@ public class Driver {
 		System.out.println(myLevelPanel); System.out.println();
 		System.out.println("Instantiating an \"Enemy\":");
 		System.out.println(myEnemy);
-		
+		*/
 	}
 
 }
