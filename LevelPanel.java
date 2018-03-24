@@ -7,6 +7,7 @@
  ******************************************************************/
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ import java.awt.event.KeyListener;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -29,6 +31,10 @@ public class LevelPanel extends JPanel
 	private ImageIcon myEnemyImage = new ImageIcon(myEnemy.getImageName());
 	private ImageIcon myItemImage = new ImageIcon(myItem.getImageName());
 	private Movement movement = new Movement(myPlayer, myEnemy, myImage1, myEnemyImage, myItemImage, itemArray, this);
+	
+	private GamePanel myEastPanel = new GamePanel();
+	private JPanel myCenterPanel;
+	
 
 	private Random generator = new Random();
 	private int minNum = 50;
@@ -50,7 +56,11 @@ public class LevelPanel extends JPanel
 			myItem = new Item("./src/Images/Jewel.gif", generator.nextInt(maxNum) + minNum, generator.nextInt(maxNum) + minNum);
 			itemArray[i] = myItem;
 		}
+	//Adding clear panels with dimensions to add score on right side.
+		myCenterPanel = new JPanel(); myCenterPanel.setPreferredSize(new Dimension(800,800)); myCenterPanel.setBackground(new Color(0,0,0,0));
 		
+		add(myCenterPanel, BorderLayout.CENTER);
+		add(myEastPanel, BorderLayout.EAST);
 	}
 
 	public void paintComponent(Graphics page)
