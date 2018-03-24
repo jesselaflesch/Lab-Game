@@ -12,6 +12,7 @@ public class Driver {
 
 	public static void main(String[] args) throws FileNotFoundException 
 	{
+
 		
 		JFrame myFrame = new JFrame("Level Panel.");
 		
