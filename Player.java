@@ -61,6 +61,7 @@ public class Player {
 		score++;
 	}
 	
+
 	public int getItemsCollected() {
 		return itemsCollected;
 	}
