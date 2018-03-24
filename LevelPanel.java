@@ -24,16 +24,17 @@ public class LevelPanel extends JPanel
 	private Player myPlayer = new Player("P1", "./src/Images/MegaMan.jpg");
 	private Enemy myEnemy = new Enemy("./src/Images/BadGuy.png");
 	private Item myItem = new Item("./src/Images/Jewel.gif", 0, 0);
+	private Item[] itemArray = new Item[10];
 	private ImageIcon myImage1 = new ImageIcon(myPlayer.getImageName());
 	private ImageIcon myEnemyImage = new ImageIcon(myEnemy.getImageName());
 	private ImageIcon myItemImage = new ImageIcon(myItem.getImageName());
-	private Movement movement = new Movement(myPlayer, myEnemy, myImage1, myEnemyImage, myItemImage, this);
+	private Movement movement = new Movement(myPlayer, myEnemy, myImage1, myEnemyImage, myItemImage, itemArray, this);
 
 	private Random generator = new Random();
 	private int minNum = 50;
 	private int maxNum = 701;
 	
-	private Item[] itemArray = new Item[10];
+
 	
 	public LevelPanel()
 	{
@@ -62,6 +63,7 @@ public class LevelPanel extends JPanel
 		{
 			page.drawImage(myItemImage.getImage(), itemArray[i].getxLoc(), itemArray[i].getyLoc(), null);
 		}
+		
 		
 		
 	}
