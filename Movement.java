@@ -177,11 +177,13 @@ public class Movement implements KeyListener
 				myGame.addScore(myPlayer.getItemsCollected());
 				JOptionPane.showMessageDialog(null, myGame.toString());
 				Driver.myFrame.dispose();
-				try {
-					Driver.play();
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				if (JOptionPane.showConfirmDialog(null, "Play Again?") == JOptionPane.YES_OPTION) {
+					try {
+						Driver.play();
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}	
 				}
 			}
 		//Collision with myItem
