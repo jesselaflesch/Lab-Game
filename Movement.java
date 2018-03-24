@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -176,7 +177,12 @@ public class Movement implements KeyListener
 				myGame.addScore(myPlayer.getItemsCollected());
 				JOptionPane.showMessageDialog(null, myGame.toString());
 				Driver.myFrame.dispose();
-				Driver.play();
+				try {
+					Driver.play();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		//Collision with myItem
 			for (int i=0; i < itemArray.length; i++) {
@@ -208,7 +214,12 @@ public class Movement implements KeyListener
 				myGame.addScore(myPlayer.getItemsCollected());
 				JOptionPane.showMessageDialog(null, myGame.toString());
 				Driver.myFrame.dispose();
-				Driver.play();
+				try {
+					Driver.play();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		//Collision with myItem
 			for (int i=0; i < itemArray.length; i++) {
@@ -240,7 +251,12 @@ public class Movement implements KeyListener
 				myGame.addScore(myPlayer.getItemsCollected());
 				JOptionPane.showMessageDialog(null, myGame.toString());
 				Driver.myFrame.dispose();
-				Driver.play();
+				try {
+					Driver.play();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		//Collision with myItem
 			for (int i=0; i < itemArray.length; i++) {
@@ -274,7 +290,12 @@ public class Movement implements KeyListener
 				myGame.addScore(myPlayer.getItemsCollected());
 				JOptionPane.showMessageDialog(null, myGame.toString());
 				Driver.myFrame.dispose();
-				Driver.play();
+				try {
+					Driver.play();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 		//Collision with myItem

@@ -25,7 +25,7 @@ public class Game
 	}
 	
 	public String toString() {
-		String highScores = "<HTML>";
+		String highScores = "<HTML>High Scores:<BR>";
 		
 		for (int i = 0; i < this.scores.size(); i++) {
 			highScores = highScores + (i+1) + ". " + scores.get(i) + "<br>";

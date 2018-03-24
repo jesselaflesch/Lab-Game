@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import javax.swing.JFrame;
 
 //**********************************************************************
@@ -11,13 +12,13 @@ public class Driver {
 	static Game myGame = new Game();
 	static JFrame myFrame;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException  {
 		
 		play();
 
 		}
 	
-	public static void play() {
+	public static void play() throws FileNotFoundException {
 	// Making the frame
 		myFrame = new JFrame("Level Panel.");
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
