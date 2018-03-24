@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+
 import javax.swing.JFrame;
 
 //**********************************************************************
@@ -8,10 +10,12 @@ import javax.swing.JFrame;
  ***********************************************************************/
 public class Driver {
 
+
 	Game myGame = new Game();
 	static JFrame myFrame = new JFrame("Level Panel.");
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException 
+	{
 		
 		play();
 
