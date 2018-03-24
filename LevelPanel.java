@@ -23,9 +23,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class LevelPanel extends JPanel 
+public class LevelPanel extends JPanel
 {
 	private Player myPlayer;
+	private Game myGame;
 	private Enemy myEnemy;
 	private Item myItem;
 	private Item[] itemArray = new Item[10];
@@ -44,7 +45,7 @@ public class LevelPanel extends JPanel
 	
 
 	
-	public LevelPanel() throws FileNotFoundException 
+	public LevelPanel(Game myGame) throws FileNotFoundException 
 	{
 		myPlayer = new Player();
 		myEnemy = new Enemy("./src/Images/BadGuy.png");
@@ -52,11 +53,11 @@ public class LevelPanel extends JPanel
 		myImage1 = new ImageIcon(myPlayer.getImageName());
 		myEnemyImage = new ImageIcon(myEnemy.getImageName());
 		myItemImage = new ImageIcon(myItem.getImageName());
-		
+    
 		setPreferredSize(new Dimension(1000,800));
 		setLayout(new BorderLayout());
 		setFocusable(true);
-		
+		this.myGame= myGame;
 		
 		for(int i = 0; i < itemArray.length; i++)
 		{
@@ -69,7 +70,7 @@ public class LevelPanel extends JPanel
 		
 		add(myCenterPanel, BorderLayout.CENTER);
 		add(myEastPanel, BorderLayout.EAST);
-		movement = new Movement(myPlayer, myEnemy, myImage1, myEnemyImage, myItemImage, itemArray, this);
+		movement = new Movement(myPlayer, myEnemy, myImage1, myEnemyImage, myItemImage, itemArray, this, myGame);
 		movement.startTimer();
 		addKeyListener(movement);
 		repaint();
@@ -83,7 +84,7 @@ public class LevelPanel extends JPanel
 		
 		for(int i = 0; i < itemArray.length; i++)
 		{
-			if (itemArray[i] == null || itemArray[i] == null)
+			if (itemArray[i] == null)
 			{
 				continue;
 			}
@@ -92,8 +93,6 @@ public class LevelPanel extends JPanel
 				page.drawImage(myItemImage.getImage(), itemArray[i].getxLoc(), itemArray[i].getyLoc(), null);
 			}
 		}
-		
-		
 		
 	}
 	public ImageIcon getMyImage1() {
@@ -111,9 +110,10 @@ public class LevelPanel extends JPanel
 	public void updateScore(String score) {
 		myEastPanel.updateScore(score);
 	}
+	
 	public String toString()
 	{
 		return "I am the LevelPanel object and I exist!";
 	}
+}
 
-  }
