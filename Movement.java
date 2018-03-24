@@ -1,4 +1,3 @@
-
 //**********************************************************************
 /* Author = Ian Gonzales
  * Partner = Jesse LaFlesch
@@ -195,12 +194,16 @@ public class Movement implements KeyListener
 			}
 		//Collision with myItem
 			for (int i=0; i < itemArray.length; i++) {
-				if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
+				if (itemArray[i] != null) {
+					if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
 						itemRightx[i], itemTopy[i], itemBottomy[i]))
-				{
-					myPlayer.pickUpItem();
-					myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
-					myTimer.stop();	
+					{
+						myPlayer.pickUpItem();
+						itemArray[i] = null;
+						myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
+						myTimer.stop();	
+					}
+				
 				}
 			}
 		}
@@ -220,12 +223,16 @@ public class Movement implements KeyListener
 			}
 		//Collision with myItem
 			for (int i=0; i < itemArray.length; i++) {
-				if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
+				if (itemArray[i] != null) {
+					if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
 						itemRightx[i], itemTopy[i], itemBottomy[i]))
-				{
-					myPlayer.pickUpItem();
-					myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
-					myTimer.stop();	
+					{
+						myPlayer.pickUpItem();
+						itemArray[i] = null;
+						myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
+						myTimer.stop();	
+					}
+				
 				}
 			}
 		}
@@ -245,12 +252,16 @@ public class Movement implements KeyListener
 			}
 		//Collision with myItem
 			for (int i=0; i < itemArray.length; i++) {
-				if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
+				if (itemArray[i] != null) {
+					if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
 						itemRightx[i], itemTopy[i], itemBottomy[i]))
-				{
-					myPlayer.pickUpItem();
-					myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
-					myTimer.stop();	
+					{
+						myPlayer.pickUpItem();
+						itemArray[i] = null;
+						myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
+						myTimer.stop();	
+					}
+				
 				}
 			}
 		}
@@ -270,12 +281,16 @@ public class Movement implements KeyListener
 			}
 		//Collision with myItem
 			for (int i=0; i < itemArray.length; i++) {
-				if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
+				if (itemArray[i] != null) {
+					if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
 						itemRightx[i], itemTopy[i], itemBottomy[i]))
-				{
-					myPlayer.pickUpItem();
-					myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
-					myTimer.stop();	
+					{
+						myPlayer.pickUpItem();
+						itemArray[i] = null;
+						myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
+						myTimer.stop();	
+					}
+				
 				}
 			}
 		}
@@ -295,4 +310,3 @@ public class Movement implements KeyListener
 	}
 
 }
-
