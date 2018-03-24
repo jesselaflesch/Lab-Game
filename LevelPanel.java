@@ -70,7 +70,7 @@ public class LevelPanel extends JPanel
 		
 		add(myCenterPanel, BorderLayout.CENTER);
 		add(myEastPanel, BorderLayout.EAST);
-		movement = new Movement(myPlayer, myEnemy, myImage1, myEnemyImage, myItemImage, itemArray, this);
+		movement = new Movement(myPlayer, myEnemy, myImage1, myEnemyImage, myItemImage, itemArray, this, myGame);
 		movement.startTimer();
 		addKeyListener(movement);
 		repaint();
