@@ -55,6 +55,12 @@ public class Player {
 	public void setItemsCollected(int itemsCollected) {
 		this.itemsCollected = itemsCollected;
 	}
+	
+	public void pickUpItem() {
+		itemsCollected++;
+		score++;
+	}
+	
 
 	public int getItemsCollected() {
 		return itemsCollected;

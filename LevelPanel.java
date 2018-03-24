@@ -1,3 +1,4 @@
+
 //*****************************************************************
 /* Author = Jesse LaFlesch
  * Partner = Ian Gonzales
@@ -30,7 +31,7 @@ public class LevelPanel extends JPanel
 	private ImageIcon myImage1 = new ImageIcon(myPlayer.getImageName());
 	private ImageIcon myEnemyImage = new ImageIcon(myEnemy.getImageName());
 	private ImageIcon myItemImage = new ImageIcon(myItem.getImageName());
-	private Movement movement = new Movement(myPlayer, myEnemy, myImage1, myEnemyImage, myItemImage, itemArray, this);
+	private Movement movement; 
 	
 	private GamePanel myEastPanel = new GamePanel();
 	private JPanel myCenterPanel;
@@ -47,20 +48,23 @@ public class LevelPanel extends JPanel
 		setPreferredSize(new Dimension(1000,800));
 		setLayout(new BorderLayout());
 		setFocusable(true);
-		movement.startTimer();
-		addKeyListener(movement);
-		repaint();
+		
 		
 		for(int i = 0; i < itemArray.length; i++)
 		{
 			myItem = new Item("./src/Images/Jewel.gif", generator.nextInt(maxNum) + minNum, generator.nextInt(maxNum) + minNum);
 			itemArray[i] = myItem;
 		}
+		
 	//Adding clear panels with dimensions to add score on right side.
 		myCenterPanel = new JPanel(); myCenterPanel.setPreferredSize(new Dimension(800,800)); myCenterPanel.setBackground(new Color(0,0,0,0));
 		
 		add(myCenterPanel, BorderLayout.CENTER);
 		add(myEastPanel, BorderLayout.EAST);
+		movement = new Movement(myPlayer, myEnemy, myImage1, myEnemyImage, myItemImage, itemArray, this);
+		movement.startTimer();
+		addKeyListener(movement);
+		repaint();
 	}
 
 	public void paintComponent(Graphics page)
@@ -71,7 +75,14 @@ public class LevelPanel extends JPanel
 		
 		for(int i = 0; i < itemArray.length; i++)
 		{
-			page.drawImage(myItemImage.getImage(), itemArray[i].getxLoc(), itemArray[i].getyLoc(), null);
+			if (itemArray[i] == null || itemArray[i] == null)
+			{
+				continue;
+			}
+			else
+			{
+				page.drawImage(myItemImage.getImage(), itemArray[i].getxLoc(), itemArray[i].getyLoc(), null);
+			}
 		}
 		
 		
@@ -88,9 +99,12 @@ public class LevelPanel extends JPanel
 	public ImageIcon getMyItemImage() {
 		return myItemImage;
 	}
-
+	
+	public void updateScore(String score) {
+		myEastPanel.updateScore(score);
+	}
 	public String toString()
 	{
 		return "I am the LevelPanel object and I exist!";
 	}
-}
+  }
