@@ -18,9 +18,7 @@ import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements ActionListener
 {
-
 	private JLabel myLabel1, myLabel2, moveButtons;
-
 	private JButton myButton1, myButton2;
 	private Font font1 = new Font("New Times Roman", Font.BOLD, 20);
 	

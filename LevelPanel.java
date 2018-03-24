@@ -15,7 +15,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.FileNotFoundException;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -23,7 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class LevelPanel extends JPanel 
+public class LevelPanel extends JPanel
 {
 	private Player myPlayer;
 	private Enemy myEnemy;
@@ -52,7 +51,7 @@ public class LevelPanel extends JPanel
 		myImage1 = new ImageIcon(myPlayer.getImageName());
 		myEnemyImage = new ImageIcon(myEnemy.getImageName());
 		myItemImage = new ImageIcon(myItem.getImageName());
-		
+    
 		setPreferredSize(new Dimension(1000,800));
 		setLayout(new BorderLayout());
 		setFocusable(true);
@@ -83,7 +82,7 @@ public class LevelPanel extends JPanel
 		
 		for(int i = 0; i < itemArray.length; i++)
 		{
-			if (itemArray[i] == null || itemArray[i] == null)
+			if (itemArray[i] == null)
 			{
 				continue;
 			}
@@ -92,8 +91,6 @@ public class LevelPanel extends JPanel
 				page.drawImage(myItemImage.getImage(), itemArray[i].getxLoc(), itemArray[i].getyLoc(), null);
 			}
 		}
-		
-		
 		
 	}
 	public ImageIcon getMyImage1() {
@@ -111,9 +108,10 @@ public class LevelPanel extends JPanel
 	public void updateScore(String score) {
 		myEastPanel.updateScore(score);
 	}
+	
 	public String toString()
 	{
 		return "I am the LevelPanel object and I exist!";
 	}
+}
 
-  }
