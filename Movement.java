@@ -20,10 +20,14 @@ public class Movement implements KeyListener
 	
 	private Player myPlayer;
 	private Enemy myEnemy;
-	private Item[] itemArray;
+	private Item[] itemArray = new Item[10];
 	private Timer myTimer = new Timer(400, new timerListener());
 	private JPanel myPanel;
 	private int enemyHeight, enemyWidth, playerHeight, playerWidth, itemHeight, itemWidth;
+	private Integer[] itemLeftx = new Integer[10];
+	private Integer[] itemRightx = new Integer[10];
+	private Integer[] itemTopy = new Integer[10];
+	private Integer[] itemBottomy = new Integer[10];
 	private ImageIcon myEnemyImage, myPlayerImage, myItemImage;
 	
 	public Movement(Player myPlayer, Enemy myEnemy, ImageIcon myPlayerImage, ImageIcon myEnemyImage,
@@ -43,6 +47,23 @@ public class Movement implements KeyListener
 		this.enemyWidth = myEnemyImage.getIconWidth();
 		this.itemHeight = myItemImage.getIconHeight();
 		this.itemWidth = myItemImage.getIconWidth();
+		
+		for (int i = 0; i < this.itemArray.length; i++)
+		{
+			itemLeftx[i] = this.itemArray[i].getxLoc();
+		}
+		for (int i = 0; i < this.itemArray.length; i++)
+		{
+			itemRightx[i] = this.itemArray[i].getxLoc() + myItemImage.getIconWidth();
+		}
+		for (int i = 0; i < this.itemArray.length; i++)
+		{
+			itemTopy[i] = this.itemArray[i].getyLoc();
+		}
+		for (int i = 0; i < this.itemArray.length; i++)
+		{
+			itemBottomy[i] = this.itemArray[i].getyLoc() + myItemImage.getIconHeight();
+		}
 	}
 	
 
@@ -93,7 +114,9 @@ public class Movement implements KeyListener
 //Methods for x and y points for myItem's Image	
 	/*private int itemLeftx()
 	{
-		return myItem.getxLoc();
+		for (int i = 0; i < itemArray.length; i++)
+			
+		return itemArray[1].getxLoc();
 	}
 	
 	private int itemRightx()
