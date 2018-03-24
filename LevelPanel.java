@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -21,15 +22,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class LevelPanel extends JPanel
+public class LevelPanel extends JPanel 
 {
-	private Player myPlayer = new Player("P1", "./src/Images/MegaMan.jpg");
-	private Enemy myEnemy = new Enemy("./src/Images/BadGuy.png");
-	private Item myItem = new Item("./src/Images/Jewel.gif", 0, 0);
+	private Player myPlayer;
+	private Enemy myEnemy;
+	private Item myItem;
 	private Item[] itemArray = new Item[10];
-	private ImageIcon myImage1 = new ImageIcon(myPlayer.getImageName());
-	private ImageIcon myEnemyImage = new ImageIcon(myEnemy.getImageName());
-	private ImageIcon myItemImage = new ImageIcon(myItem.getImageName());
+	private ImageIcon myImage1;
+	private ImageIcon myEnemyImage;
+	private ImageIcon myItemImage;
 	private Movement movement; 
 	
 	private GamePanel myEastPanel = new GamePanel();
@@ -42,8 +43,15 @@ public class LevelPanel extends JPanel
 	
 
 	
-	public LevelPanel()
+	public LevelPanel() throws FileNotFoundException 
 	{
+		myPlayer = new Player();
+		myEnemy = new Enemy("./src/Images/BadGuy.png");
+		myItem = new Item("./src/Images/Jewel.gif", 0, 0);
+		myImage1 = new ImageIcon(myPlayer.getImageName());
+		myEnemyImage = new ImageIcon(myEnemy.getImageName());
+		myItemImage = new ImageIcon(myItem.getImageName());
+		
 		setPreferredSize(new Dimension(1000,800));
 		setLayout(new BorderLayout());
 		setFocusable(true);
@@ -54,6 +62,7 @@ public class LevelPanel extends JPanel
 			myItem = new Item("./src/Images/Jewel.gif", generator.nextInt(maxNum) + minNum, generator.nextInt(maxNum) + minNum);
 			itemArray[i] = myItem;
 		}
+		
 	//Adding clear panels with dimensions to add score on right side.
 		myCenterPanel = new JPanel(); myCenterPanel.setPreferredSize(new Dimension(800,800)); myCenterPanel.setBackground(new Color(0,0,0,0));
 		
@@ -97,9 +106,12 @@ public class LevelPanel extends JPanel
 	public ImageIcon getMyItemImage() {
 		return myItemImage;
 	}
-
+	
+	public void updateScore(String score) {
+		myEastPanel.updateScore(score);
+	}
 	public String toString()
 	{
 		return "I am the LevelPanel object and I exist!";
 	}
-}
+  }

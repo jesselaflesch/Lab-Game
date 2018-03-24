@@ -22,7 +22,7 @@ public class Movement implements KeyListener
 	private Enemy myEnemy;
 	private Item[] itemArray = new Item[10];
 	private Timer myTimer = new Timer(400, new timerListener());
-	private JPanel myPanel;
+	private LevelPanel myPanel;
 	private int enemyHeight, enemyWidth, playerHeight, playerWidth, itemHeight, itemWidth;
 	private Integer[] itemLeftx = new Integer[10];
 	private Integer[] itemRightx = new Integer[10];
@@ -31,7 +31,7 @@ public class Movement implements KeyListener
 	private ImageIcon myEnemyImage, myPlayerImage, myItemImage;
 	
 	public Movement(Player myPlayer, Enemy myEnemy, ImageIcon myPlayerImage, ImageIcon myEnemyImage,
-			ImageIcon myItemImage, Item[] itemArray, JPanel myPanel) 
+			ImageIcon myItemImage, Item[] itemArray, LevelPanel myPanel) 
 	{
 		this.myPlayer = myPlayer;
 		this.myEnemy = myEnemy;
@@ -175,11 +175,6 @@ public class Movement implements KeyListener
 	}
 	
 
-	
-	public String toString() {
-		return "I am a Movement object, and I exist.";
-	}
-
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
@@ -198,11 +193,15 @@ public class Movement implements KeyListener
 				myTimer.stop();
 			}
 		//Collision with myItem
-			/*if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx(), 
-			itemRightx(), itemTopy(), itemBottomy()))
-			{
-						
-			}*/
+			for (int i=0; i < itemArray.length; i++) {
+				if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
+						itemRightx[i], itemTopy[i], itemBottomy[i]))
+				{
+					myPlayer.pickUpItem();
+					myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
+					myTimer.stop();	
+				}
+			}
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_S)
 		{
@@ -219,11 +218,15 @@ public class Movement implements KeyListener
 				myTimer.stop();
 			}
 		//Collision with myItem
-			/*if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx(), 
-			itemRightx(), itemTopy(), itemBottomy()))
-			{
-						
-			}*/
+			for (int i=0; i < itemArray.length; i++) {
+				if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
+						itemRightx[i], itemTopy[i], itemBottomy[i]))
+				{
+					myPlayer.pickUpItem();
+					myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
+					myTimer.stop();	
+				}
+			}
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_W)
 		{
@@ -240,11 +243,15 @@ public class Movement implements KeyListener
 				myTimer.stop();
 			}
 		//Collision with myItem
-			/*if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx(), 
-			itemRightx(), itemTopy(), itemBottomy()))
-			{
-						
-			}*/
+			for (int i=0; i < itemArray.length; i++) {
+				if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
+						itemRightx[i], itemTopy[i], itemBottomy[i]))
+				{
+					myPlayer.pickUpItem();
+					myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
+					myTimer.stop();	
+				}
+			}
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_D)
 		{
@@ -261,11 +268,15 @@ public class Movement implements KeyListener
 				myTimer.stop();
 			}
 		//Collision with myItem
-			/*if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx(), 
-			itemRightx(), itemTopy(), itemBottomy()))
-			{
-						
-			}*/
+			for (int i=0; i < itemArray.length; i++) {
+				if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
+						itemRightx[i], itemTopy[i], itemBottomy[i]))
+				{
+					myPlayer.pickUpItem();
+					myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
+					myTimer.stop();	
+				}
+			}
 		}
 		myPanel.repaint();
 	}
