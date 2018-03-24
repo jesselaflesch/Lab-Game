@@ -6,6 +6,9 @@
  * Purpose = Used by the Player or Enemy to move about the screen
  ***********************************************************************/
 
+
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -13,9 +16,12 @@ import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 
 import javax.swing.ImageIcon;
+
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 
 public class Movement implements KeyListener
 {
@@ -33,6 +39,8 @@ public class Movement implements KeyListener
 	private Integer[] itemBottomy = new Integer[10];
 	private ImageIcon myEnemyImage, myPlayerImage, myItemImage;
 	
+	private Font font1 = new Font("New Times Roman", Font.BOLD, 20);
+
 	public Movement(Player myPlayer, Enemy myEnemy, ImageIcon myPlayerImage, ImageIcon myEnemyImage,
 			ImageIcon myItemImage, Item[] itemArray, LevelPanel myPanel, Game myGame) 
 	{
@@ -175,7 +183,11 @@ public class Movement implements KeyListener
 			{
 				myTimer.stop();
 				myGame.addScore(myPlayer.getItemsCollected());
-				JOptionPane.showMessageDialog(null, myGame.toString());
+
+				UIManager.put("OptionPane.minimumSize",new Dimension(500,200));
+				JLabel myLabel = new JLabel(myGame.toString());
+				myLabel.setFont(font1);
+				JOptionPane.showMessageDialog(null, myLabel);
 				Driver.myFrame.dispose();
 				if (JOptionPane.showConfirmDialog(null, "Play Again?") == JOptionPane.YES_OPTION) {
 					try {
