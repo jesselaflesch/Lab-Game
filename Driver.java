@@ -8,10 +8,16 @@ import javax.swing.JFrame;
  ***********************************************************************/
 public class Driver {
 
+	Game myGame = new Game();
+	static JFrame myFrame = new JFrame("Level Panel.");
+	
 	public static void main(String[] args) {
 		
-		JFrame myFrame = new JFrame("Level Panel.");
-		
+		play();
+
+		}
+	
+	public static void play() {
 	// Making the frame
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -23,6 +29,7 @@ public class Driver {
 		myFrame.add(levelPanel);
 		myFrame.pack();
 		myFrame.setVisible(true);
+		
 		
 	}
 

@@ -111,28 +111,7 @@ public class Movement implements KeyListener
 	{
 		return myEnemy.getyLoc() + enemyHeight;
 	}
-//Methods for x and y points for myItem's Image	
-	/*private int itemLeftx()
-	{
-		for (int i = 0; i < itemArray.length; i++)
-			
-		return itemArray[1].getxLoc();
-	}
 	
-	private int itemRightx()
-	{
-		return myItem.getxLoc() + itemWidth;
-	}
-	
-	private int itemTopy()
-	{
-		return myItem.getyLoc();
-	}
-	
-	private int itemBottomy()
-	{
-		return myItem.getyLoc() + itemHeight;
-	}*/
 	
 	private boolean areRectsColliding(int r1TopLeftX, int r1BottomRightX,int r1TopLeftY, int r1BottomRightY, int r2TopLeftX, 
 			int r2BottomRightX, int r2TopLeftY, int r2BottomRightY) 
@@ -191,6 +170,7 @@ public class Movement implements KeyListener
 			enemyRightx(), enemyTopy(), enemyBottomy()))
 			{
 				myTimer.stop();
+				
 			}
 		//Collision with myItem
 			for (int i=0; i < itemArray.length; i++) {
@@ -201,7 +181,6 @@ public class Movement implements KeyListener
 						myPlayer.pickUpItem();
 						itemArray[i] = null;
 						myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
-						myTimer.stop();	
 					}
 				
 				}
@@ -230,7 +209,6 @@ public class Movement implements KeyListener
 						myPlayer.pickUpItem();
 						itemArray[i] = null;
 						myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
-						myTimer.stop();	
 					}
 				
 				}
@@ -259,7 +237,6 @@ public class Movement implements KeyListener
 						myPlayer.pickUpItem();
 						itemArray[i] = null;
 						myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
-						myTimer.stop();	
 					}
 				
 				}
@@ -268,17 +245,20 @@ public class Movement implements KeyListener
 		else if(e.getKeyCode() == KeyEvent.VK_D)
 		{
 			myPlayer.setxLoc(myPlayer.getxLoc() + 5);
+			
 		//Border control.
 			if (playerRightx() > 800)
 			{
 				myPlayer.setxLoc(800 - playerWidth);
 			}
+			
 		//Collision with myEnemy
 			if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), enemyLeftx(), 
 			enemyRightx(), enemyTopy(), enemyBottomy()))
 			{
 				myTimer.stop();
 			}
+			
 		//Collision with myItem
 			for (int i=0; i < itemArray.length; i++) {
 				if (itemArray[i] != null) {
@@ -288,7 +268,6 @@ public class Movement implements KeyListener
 						myPlayer.pickUpItem();
 						itemArray[i] = null;
 						myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
-						myTimer.stop();	
 					}
 				
 				}

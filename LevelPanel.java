@@ -1,4 +1,3 @@
-
 //*****************************************************************
 /* Author = Jesse LaFlesch
  * Partner = Ian Gonzales
@@ -75,7 +74,7 @@ public class LevelPanel extends JPanel
 		
 		for(int i = 0; i < itemArray.length; i++)
 		{
-			if (itemArray[i] == null || itemArray[i] == null)
+			if (itemArray[i] == null)
 			{
 				continue;
 			}
@@ -84,8 +83,6 @@ public class LevelPanel extends JPanel
 				page.drawImage(myItemImage.getImage(), itemArray[i].getxLoc(), itemArray[i].getyLoc(), null);
 			}
 		}
-		
-		
 		
 	}
 	public ImageIcon getMyImage1() {
@@ -103,8 +100,9 @@ public class LevelPanel extends JPanel
 	public void updateScore(String score) {
 		myEastPanel.updateScore(score);
 	}
+	
 	public String toString()
 	{
 		return "I am the LevelPanel object and I exist!";
 	}
-  }
+}
