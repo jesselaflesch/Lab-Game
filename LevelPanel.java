@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -25,6 +26,7 @@ import javax.swing.Timer;
 public class LevelPanel extends JPanel
 {
 	private Player myPlayer;
+	private Game myGame;
 	private Enemy myEnemy;
 	private Item myItem;
 	private Item[] itemArray = new Item[10];
@@ -43,7 +45,7 @@ public class LevelPanel extends JPanel
 	
 
 	
-	public LevelPanel() throws FileNotFoundException 
+	public LevelPanel(Game myGame) throws FileNotFoundException 
 	{
 		myPlayer = new Player();
 		myEnemy = new Enemy("./src/Images/BadGuy.png");
@@ -55,7 +57,7 @@ public class LevelPanel extends JPanel
 		setPreferredSize(new Dimension(1000,800));
 		setLayout(new BorderLayout());
 		setFocusable(true);
-		
+		this.myGame= myGame;
 		
 		for(int i = 0; i < itemArray.length; i++)
 		{
