@@ -1,4 +1,3 @@
-
 //**********************************************************************
 /* Author = Ian Gonzales
  * Partner = Jesse LaFlesch
@@ -13,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -22,6 +22,7 @@ public class Movement implements KeyListener
 	private Player myPlayer;
 	private Enemy myEnemy;
 	private Item[] itemArray = new Item[10];
+	private Game myGame;
 	private Timer myTimer = new Timer(400, new timerListener());
 	private LevelPanel myPanel;
 	private int enemyHeight, enemyWidth, playerHeight, playerWidth, itemHeight, itemWidth;
@@ -32,7 +33,7 @@ public class Movement implements KeyListener
 	private ImageIcon myEnemyImage, myPlayerImage, myItemImage;
 	
 	public Movement(Player myPlayer, Enemy myEnemy, ImageIcon myPlayerImage, ImageIcon myEnemyImage,
-			ImageIcon myItemImage, Item[] itemArray, LevelPanel myPanel) 
+			ImageIcon myItemImage, Item[] itemArray, LevelPanel myPanel, Game myGame) 
 	{
 		this.myPlayer = myPlayer;
 		this.myEnemy = myEnemy;
@@ -41,6 +42,7 @@ public class Movement implements KeyListener
 		this.myEnemyImage = myEnemyImage;
 		this.myItemImage = myItemImage;
 		this.itemArray = itemArray;
+		this.myGame = myGame;
 		
 		this.playerHeight = myPlayerImage.getIconHeight();
 		this.playerWidth = myPlayerImage.getIconWidth();
@@ -171,7 +173,10 @@ public class Movement implements KeyListener
 			enemyRightx(), enemyTopy(), enemyBottomy()))
 			{
 				myTimer.stop();
-				
+				myGame.addScore(myPlayer.getItemsCollected());
+				JOptionPane.showMessageDialog(null, myGame.toString());
+				Driver.myFrame.dispose();
+				Driver.play();
 			}
 		//Collision with myItem
 			for (int i=0; i < itemArray.length; i++) {
@@ -200,6 +205,10 @@ public class Movement implements KeyListener
 			enemyRightx(), enemyTopy(), enemyBottomy()))
 			{
 				myTimer.stop();
+				myGame.addScore(myPlayer.getItemsCollected());
+				JOptionPane.showMessageDialog(null, myGame.toString());
+				Driver.myFrame.dispose();
+				Driver.play();
 			}
 		//Collision with myItem
 			for (int i=0; i < itemArray.length; i++) {
@@ -228,6 +237,10 @@ public class Movement implements KeyListener
 			enemyRightx(), enemyTopy(), enemyBottomy()))
 			{
 				myTimer.stop();
+				myGame.addScore(myPlayer.getItemsCollected());
+				JOptionPane.showMessageDialog(null, myGame.toString());
+				Driver.myFrame.dispose();
+				Driver.play();
 			}
 		//Collision with myItem
 			for (int i=0; i < itemArray.length; i++) {
@@ -258,6 +271,10 @@ public class Movement implements KeyListener
 			enemyRightx(), enemyTopy(), enemyBottomy()))
 			{
 				myTimer.stop();
+				myGame.addScore(myPlayer.getItemsCollected());
+				JOptionPane.showMessageDialog(null, myGame.toString());
+				Driver.myFrame.dispose();
+				Driver.play();
 			}
 			
 		//Collision with myItem
