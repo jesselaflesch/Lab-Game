@@ -1,4 +1,3 @@
-
 //*****************************************************************
 /* Author = Jesse LaFlesch
  * Partner = Ian Gonzales
@@ -24,13 +23,14 @@ import javax.swing.Timer;
 
 public class LevelPanel extends JPanel
 {
-	private Player myPlayer;
-	private Enemy myEnemy;
-	private Item myItem;
+	private Player myPlayer = new Player("P1", "./src/Images/MegaMan.jpg");
+	private Game myGame;
+	private Enemy myEnemy = new Enemy("./src/Images/BadGuy.png");
+	private Item myItem = new Item("./src/Images/Jewel.gif", 0, 0);
 	private Item[] itemArray = new Item[10];
-	private ImageIcon myImage1;
-	private ImageIcon myEnemyImage;
-	private ImageIcon myItemImage;
+	private ImageIcon myImage1 = new ImageIcon(myPlayer.getImageName());
+	private ImageIcon myEnemyImage = new ImageIcon(myEnemy.getImageName());
+	private ImageIcon myItemImage = new ImageIcon(myItem.getImageName());
 	private Movement movement; 
 	
 	private GamePanel myEastPanel = new GamePanel();
@@ -43,18 +43,12 @@ public class LevelPanel extends JPanel
 	
 
 	
-	public LevelPanel() throws FileNotFoundException 
+	public LevelPanel(Game myGame)
 	{
-		myPlayer = new Player();
-		myEnemy = new Enemy("./src/Images/BadGuy.png");
-		myItem = new Item("./src/Images/Jewel.gif", 0, 0);
-		myImage1 = new ImageIcon(myPlayer.getImageName());
-		myEnemyImage = new ImageIcon(myEnemy.getImageName());
-		myItemImage = new ImageIcon(myItem.getImageName());
-    
 		setPreferredSize(new Dimension(1000,800));
 		setLayout(new BorderLayout());
 		setFocusable(true);
+		this.myGame = myGame;
 		
 		
 		for(int i = 0; i < itemArray.length; i++)
@@ -68,7 +62,7 @@ public class LevelPanel extends JPanel
 		
 		add(myCenterPanel, BorderLayout.CENTER);
 		add(myEastPanel, BorderLayout.EAST);
-		movement = new Movement(myPlayer, myEnemy, myImage1, myEnemyImage, myItemImage, itemArray, this);
+		movement = new Movement(myPlayer, myEnemy, myImage1, myEnemyImage, myItemImage, itemArray, this, myGame);
 		movement.startTimer();
 		addKeyListener(movement);
 		repaint();
@@ -114,4 +108,3 @@ public class LevelPanel extends JPanel
 		return "I am the LevelPanel object and I exist!";
 	}
 }
-
