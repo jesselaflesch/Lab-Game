@@ -1,53 +1,37 @@
-//**********************************************************************
-/* Author = Ian Gonzales
- * Partner = Jesse LaFlesch
- * File = Item.java
- * Creation Date: 3/9/18
- * Purpose = Appears on the screen and is collected by the player.
- ***********************************************************************/
 
-public class Item {
 
-	private String imageName;
+import java.awt.Image;
+import java.util.Random;
+import javax.swing.ImageIcon;
+
+public class Item{
+
+	private ImageIcon image;
+	private String name;
 	private int xLoc;
 	private int yLoc;
-	private int width, height;
+	private Random randomLocation = new Random();
 	
-	
-	public Item(String imageName, int xLoc, int yLoc) {
-		this.imageName = imageName;
-		this.xLoc = xLoc;
-		this.yLoc = yLoc;
-	}
-	
-	public void dissappear() {
-	}
-	
-	public String getImageName() {
-		return imageName;
-	}
-	
-
-	public int getxLoc() {
-		return xLoc;
+	public Item(String name, String imagePath) {
+		this.name = name;
+		this.image = new ImageIcon(imagePath);
+		this.xLoc = randomLocation.nextInt(701) + 50;
+		this.yLoc = randomLocation.nextInt(701) + 50;
 	}
 
-	public void setxLoc(int xLoc) {
-		this.xLoc = xLoc;
-	}
+	public int getXLoc() {return xLoc;}
 
-	public int getyLoc() {
-		return yLoc;
-	}
+	public void setXLoc(int xLoc) {this.xLoc = xLoc;}
 
-	public void setyLoc(int yLoc) {
-		this.yLoc = yLoc;
-	}
+	public int getYLoc() {return yLoc;}
 
-	public String toString() {
-		return "ImageName: \t" + imageName + "\n"
-				+ "xLoc: \t" + xLoc + "\n"
-				+ "yLoc: \t" + yLoc + "\n";
-	}
+	public void setYLoc(int yLoc) {this.yLoc = yLoc;}
 	
+	public Image getImage() {return image.getImage();}
+
+	public int getImageWidth() {return image.getIconWidth();}
+	
+	public int getImageHeight() {return image.getIconHeight();}
 }
+
+

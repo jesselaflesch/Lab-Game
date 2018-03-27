@@ -1,332 +1,80 @@
-//**********************************************************************
-/* Author = Ian Gonzales
- * Partner = Jesse LaFlesch
- * File = Movement.java
- * Creation Date: 3/9/18
- * Purpose = Used by the Player or Enemy to move about the screen
- ***********************************************************************/
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.FileNotFoundException;
-
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Movement implements KeyListener
-{
+public class Movement implements KeyListener{
 	
-	private Player myPlayer;
-	private Enemy myEnemy;
-	private Item[] itemArray = new Item[10];
-	private Game myGame;
-	private Timer myTimer = new Timer(400, new timerListener());
-	private LevelPanel myPanel;
-	private int enemyHeight, enemyWidth, playerHeight, playerWidth, itemHeight, itemWidth;
-	private Integer[] itemLeftx = new Integer[10];
-	private Integer[] itemRightx = new Integer[10];
-	private Integer[] itemTopy = new Integer[10];
-	private Integer[] itemBottomy = new Integer[10];
-	private ImageIcon myEnemyImage, myPlayerImage, myItemImage;
+	private Player player;
+	private Enemy enemy;
+	private Item[] items;
+	private LevelPanel levelPanel;
+	private Timer timer = new Timer(400, new TimerListener());
 	
-	public Movement(Player myPlayer, Enemy myEnemy, ImageIcon myPlayerImage, ImageIcon myEnemyImage,
-			ImageIcon myItemImage, Item[] itemArray, LevelPanel myPanel, Game myGame) 
-	{
-		this.myPlayer = myPlayer;
-		this.myEnemy = myEnemy;
-		this.myPanel = myPanel;
-		this.myPlayerImage = myPlayerImage;
-		this.myEnemyImage = myEnemyImage;
-		this.myItemImage = myItemImage;
-		this.itemArray = itemArray;
-		this.myGame = myGame;
+	public Movement(Player player, Enemy enemy, Item[] items, LevelPanel levelPanel){
+		this.player = player;
+		this.enemy = enemy;
+		this.items = items;
+		this.levelPanel = levelPanel;
+	}
+	
+	public void startTimer() {timer.start();}
+	
+	private class TimerListener implements ActionListener{
 		
-		this.playerHeight = myPlayerImage.getIconHeight();
-		this.playerWidth = myPlayerImage.getIconWidth();
-		this.enemyHeight = myEnemyImage.getIconHeight();
-		this.enemyWidth = myEnemyImage.getIconWidth();
-		this.itemHeight = myItemImage.getIconHeight();
-		this.itemWidth = myItemImage.getIconWidth();
-		
-		for (int i = 0; i < this.itemArray.length; i++)
-		{
-			itemLeftx[i] = this.itemArray[i].getxLoc();
-		}
-		for (int i = 0; i < this.itemArray.length; i++)
-		{
-			itemRightx[i] = this.itemArray[i].getxLoc() + myItemImage.getIconWidth();
-		}
-		for (int i = 0; i < this.itemArray.length; i++)
-		{
-			itemTopy[i] = this.itemArray[i].getyLoc();
-		}
-		for (int i = 0; i < this.itemArray.length; i++)
-		{
-			itemBottomy[i] = this.itemArray[i].getyLoc() + myItemImage.getIconHeight();
-		}
-	}
-	
-
-	public void startTimer()
-	{
-		myTimer.start();
-	}
-//Methods for x and y points for myPlayer's Image	
-	private int playerLeftx()
-	{
-		return myPlayer.getxLoc();
-	}
-	
-	private int playerRightx()
-	{
-		return myPlayer.getxLoc() + playerWidth;
-	}
-	
-	private int playerTopy()
-	{
-		return myPlayer.getyLoc();
-	}
-	
-	private int playerBottomy()
-	{
-		return myPlayer.getyLoc() + playerHeight;
-	}
-//Methods for x and y points for myEnemy's Image	
-	private int enemyLeftx()
-	{
-		return myEnemy.getxLoc();
-	}
-	
-	private int enemyRightx()
-	{
-		return myEnemy.getxLoc() + enemyWidth;
-	}
-	
-	private int enemyTopy()
-	{
-		return myEnemy.getyLoc();
-	}
-	
-	private int enemyBottomy()
-	{
-		return myEnemy.getyLoc() + enemyHeight;
-	}
-	
-	
-	private boolean areRectsColliding(int r1TopLeftX, int r1BottomRightX,int r1TopLeftY, int r1BottomRightY, int r2TopLeftX, 
-			int r2BottomRightX, int r2TopLeftY, int r2BottomRightY) 
-	{
-		if (r1TopLeftX < r2BottomRightX && r1BottomRightX >
-		r2TopLeftX && r1TopLeftY < r2BottomRightY && r1BottomRightY > r2TopLeftY) 
-		{
-		return true;
-		}
-		else 
-		{
-		return false; 
-		} 
-	}
-	
-	private class timerListener implements ActionListener
-	{
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) 
-		{
-			if (myPlayer.getxLoc() < myEnemy.getxLoc())
-			{
-				myEnemy.setxLoc(myEnemy.getxLoc() - 5);
-			}
-			else if (myPlayer.getxLoc() > myEnemy.getxLoc())
-			{
-				myEnemy.setxLoc(myEnemy.getxLoc() + 5);
-			}
-			if (myPlayer.getyLoc() < myEnemy.getyLoc())
-			{
-				myEnemy.setyLoc(myEnemy.getyLoc() - 5);
-			}
-			else if (myPlayer.getyLoc() > myEnemy.getyLoc())
-			{
-				myEnemy.setyLoc(myEnemy.getyLoc() + 5);
-			}
-			myPanel.repaint();
-		}
-	}
-	
-
-	@Override
-	public void keyPressed(KeyEvent e) 
-	{
-		if(e.getKeyCode() == KeyEvent.VK_A)
-		{
-			myPlayer.setxLoc(myPlayer.getxLoc() - 5);
-		//Border control.
-			if (playerLeftx() < 0)
-			{
-				myPlayer.setxLoc(0);
-			}
-		//Collision with myEnemy
-			if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), enemyLeftx(), 
-			enemyRightx(), enemyTopy(), enemyBottomy()))
-			{
-				myTimer.stop();
-				myGame.addScore(myPlayer.getItemsCollected());
-				JOptionPane.showMessageDialog(null, myGame.toString());
-				Driver.myFrame.dispose();
-				if (JOptionPane.showConfirmDialog(null, "Play Again?") == JOptionPane.YES_OPTION) {
-					try {
-						Driver.play();
-					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}	
-				}
-			}
-		//Collision with myItem
-			for (int i=0; i < itemArray.length; i++) {
-				if (itemArray[i] != null) {
-					if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
-						itemRightx[i], itemTopy[i], itemBottomy[i]))
-					{
-						myPlayer.pickUpItem();
-						itemArray[i] = null;
-						myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
-					}
-				
-				}
-			}
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_S)
-		{
-			myPlayer.setyLoc(myPlayer.getyLoc() + 5);
-		//Border control.
-			if (playerBottomy() > 800)
-			{
-				myPlayer.setyLoc(800 - playerHeight);
-			}
-		//Collision with myEnemy
-			if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), enemyLeftx(), 
-			enemyRightx(), enemyTopy(), enemyBottomy()))
-			{
-				myTimer.stop();
-				myGame.addScore(myPlayer.getItemsCollected());
-				JOptionPane.showMessageDialog(null, myGame.toString());
-				Driver.myFrame.dispose();
-				try {
-					Driver.play();
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		//Collision with myItem
-			for (int i=0; i < itemArray.length; i++) {
-				if (itemArray[i] != null) {
-					if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
-						itemRightx[i], itemTopy[i], itemBottomy[i]))
-					{
-						myPlayer.pickUpItem();
-						itemArray[i] = null;
-						myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
-					}
-				
-				}
-			}
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_W)
-		{
-			myPlayer.setyLoc(myPlayer.getyLoc() - 5);
-		//Border control.
-			if (playerTopy() < 0)
-			{
-				myPlayer.setyLoc(0);
-			}
-		//Collision with myEnemy
-			if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), enemyLeftx(), 
-			enemyRightx(), enemyTopy(), enemyBottomy()))
-			{
-				myTimer.stop();
-				myGame.addScore(myPlayer.getItemsCollected());
-				JOptionPane.showMessageDialog(null, myGame.toString());
-				Driver.myFrame.dispose();
-				try {
-					Driver.play();
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		//Collision with myItem
-			for (int i=0; i < itemArray.length; i++) {
-				if (itemArray[i] != null) {
-					if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
-						itemRightx[i], itemTopy[i], itemBottomy[i]))
-					{
-						myPlayer.pickUpItem();
-						itemArray[i] = null;
-						myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
-					}
-				
-				}
-			}
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_D)
-		{
-			myPlayer.setxLoc(myPlayer.getxLoc() + 5);
+		public void actionPerformed(ActionEvent arg0){
+			if (player.getXLoc() < enemy.getXLoc()) {enemy.left();}
+			else if (player.getXLoc() > enemy.getXLoc()) {enemy.right();}
+			if (player.getYLoc() < enemy.getYLoc()) {enemy.down();}
+			else if (player.getYLoc() > enemy.getYLoc()) {enemy.up();}
 			
-		//Border control.
-			if (playerRightx() > 800)
-			{
-				myPlayer.setxLoc(800 - playerWidth);
+			int[] playerWithEnemy = {player.getXLoc(), player.getXLoc() + player.getImageWidth(),
+					player.getYLoc(), player.getYLoc() + player.getImageWidth(),
+					enemy.getXLoc(), enemy.getXLoc() + enemy.getImageWidth(),
+					enemy.getYLoc(), enemy.getYLoc() + enemy.getImageWidth()};
+			
+			if (haveCollided(playerWithEnemy)) {
+				;//Then we were hit by the enemy~~~
 			}
 			
-		//Collision with myEnemy
-			if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), enemyLeftx(), 
-			enemyRightx(), enemyTopy(), enemyBottomy()))
-			{
-				myTimer.stop();
-				myGame.addScore(myPlayer.getItemsCollected());
-				JOptionPane.showMessageDialog(null, myGame.toString());
-				Driver.myFrame.dispose();
-				try {
-					Driver.play();
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+			for (int i = 0; i < items.length; i++) {
+				// deal with null point items[]
+				int[] playerWithItem = {player.getXLoc(), player.getXLoc() + player.getImageWidth(),
+												player.getYLoc(), player.getYLoc() + player.getImageWidth(),
+												items[i].getXLoc(), items[i].getXLoc() + items[i].getImageWidth(),
+												items[i].getYLoc(), items[i].getYLoc() + items[i].getImageWidth(),};
+				if (haveCollided(playerWithItem)) {
+					;//Then we get to pick up the item~~~
 				}
 			}
 			
-		//Collision with myItem
-			for (int i=0; i < itemArray.length; i++) {
-				if (itemArray[i] != null) {
-					if (areRectsColliding(playerLeftx(), playerRightx(), playerTopy(), playerBottomy(), itemLeftx[i], 
-						itemRightx[i], itemTopy[i], itemBottomy[i]))
-					{
-						myPlayer.pickUpItem();
-						itemArray[i] = null;
-						myPanel.updateScore(Integer.toString(myPlayer.getItemsCollected()));
-					}
-				
-				}
-			}
+			levelPanel.repaint();
 		}
-		myPanel.repaint();
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
+		private boolean haveCollided(int[] points){
+			if (points[0] < points[5] && points[1] > points[4] && points[2] < points[7] && points[3] > points[6]){
+				return true;}
+			else{return false;} 
+		}
 	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+	
+	public void keyPressed(KeyEvent e) {
+			switch (e.getKeyCode()) {
+				case KeyEvent.VK_A:
+					player.left(); break;
+				case KeyEvent.VK_S:
+					player.down(); break;
+				case KeyEvent.VK_D:
+					player.right(); break;
+				case KeyEvent.VK_W:
+					player.up();	 break;
+			}
+			levelPanel.repaint();
+	}
 		
-	}
-
+	public void keyTyped(KeyEvent e) {}
+	public void keyReleased(KeyEvent e) {}
 }

@@ -1,38 +1,33 @@
-//*****************************************************************
-/* Author = Jesse LaFlesch
- * Partner = Ian Gonzales
- * File = Game.java
- * Creation Date: 3/9/18
- * Purpose = Holds top scores and an array of Player objects and array of ints.
- ******************************************************************/
-import java.util.ArrayList;
-import java.util.Collections;
 
-public class Game 
-{
-	private ArrayList<Integer> scores;
+
+import java.util.ArrayList;
+
+public class Game{
 	
-	public Game()
-	{
-		this.scores = new ArrayList<Integer>();
+	private ArrayList<Integer> topScores;
+	private ArrayList<String> topPlayers;
+	private String playerName;
+	
+	public Game(String playerName){
+		this.topScores = new ArrayList<Integer>();
+		this.topPlayers = new ArrayList<String>();
+		this.playerName = playerName;
 	}
 	
-	public void addScore(int score)
-	{
-		scores.add(score);
-		Collections.sort(scores);
-		Collections.reverse(scores);
+	public void addScore(int score){
+		for (int i = 0; i < topScores.size(); i++) {
+			while (score <= topScores.get(i)) {continue;}
+			topScores.add(i, score);
+			topPlayers.add(i, playerName);
+		}
 	}
 	
-	public String toString() {
+	public String toString(){
 		String highScores = "<HTML>High Scores:<BR>";
-		
-		for (int i = 0; i < this.scores.size(); i++) {
-			highScores = highScores + (i+1) + ". " + scores.get(i) + "<br>";
+		for (int i = 0; i < this.topScores.size(); i++) {
+			highScores += ((i+1) + ". " + topPlayers.get(i) + ": " + topScores.get(i) + "<br>");
 		}
 		highScores += "</HTML>";
 		return highScores;
-		
 	}
-
 }

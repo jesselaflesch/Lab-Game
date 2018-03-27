@@ -1,0 +1,3 @@
+MegaMan,./src/Images/MegaMan.jpg
+Bad MegaMan,./src/Images/BadGuy.png
+Jewel,./src/Images/Jewel.gif
