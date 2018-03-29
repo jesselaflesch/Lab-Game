@@ -15,10 +15,13 @@ public class Game{
 	}
 	
 	public void addScore(int score){
-		for (int i = 0; i < topScores.size(); i++) {
-			while (score <= topScores.get(i)) {continue;}
-			topScores.add(i, score);
-			topPlayers.add(i, playerName);
+		if (topScores.size() == 0) {topScores.add(score); topPlayers.add(playerName);}
+		else {
+			for (int i = 0; i < topScores.size(); i++) {
+				while (score <= topScores.get(i)) {continue;}
+				topScores.add(i, score);
+				topPlayers.add(i, playerName);
+			}
 		}
 	}
 	

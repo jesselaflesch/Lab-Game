@@ -14,12 +14,13 @@ public class LevelPanel extends JPanel{
 	private Player player;
 	private Enemy enemy;
 	private Item[] items = new Item[10];
+	private Game myGame;
 	private Movement movement;
 	private Scanner fileScanner, lineScanner;
 	private JPanel centerPanel;
 	private GamePanel eastPanel = new GamePanel();
 	
-	public LevelPanel(File characterFile, int level) throws FileNotFoundException {
+	public LevelPanel(File characterFile, int level, Game myGame) throws FileNotFoundException {
 		fileScanner = new Scanner(characterFile);
 		lineScanner = new Scanner(fileScanner.nextLine());
 		lineScanner.useDelimiter(",");
@@ -29,13 +30,15 @@ public class LevelPanel extends JPanel{
 		lineScanner.useDelimiter(",");
 		this.enemy = new Enemy(lineScanner.next(), lineScanner.next(), level);
 		
+		this.myGame = myGame;
+		
 		lineScanner = new Scanner(fileScanner.nextLine());
 		lineScanner.useDelimiter(",");
 		String itemName = lineScanner.next();
 		String itemImagePath = lineScanner.next();
 		for (int i=0; i<10; i++) {this.items[i] = new Item(itemName, itemImagePath);}
 		
-		this.movement = new Movement(player, enemy, items, this);
+		this.movement = new Movement(player, enemy, items, this, this.myGame);
 		addKeyListener(movement);
 		
 		setPreferredSize(new Dimension(1000,800));

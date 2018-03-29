@@ -13,15 +13,15 @@ public class Driver {
 	static int level = 0, GAME_WIDTH = 800, GAME_HEIGHT = 800;
 
 	public static void main(String[] args) throws FileNotFoundException{
-		myFrame = new JFrame("Lab Game");
-		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//newPlayer();
 		play();
 	}
 	
 	public static void play() throws FileNotFoundException{
 		level++;
-		LevelPanel levelPanel = new LevelPanel(characterFile, level); 
+		myFrame = new JFrame("Lab Game");
+		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		LevelPanel levelPanel = new LevelPanel(characterFile, level, myGame);
 		myFrame.getContentPane().add(levelPanel);
 		myFrame.add(levelPanel);
 		myFrame.pack();
